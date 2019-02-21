@@ -23,11 +23,13 @@
 
 #import "RDVTabBar.h"
 #import "RDVTabBarItem.h"
+#import "BNHairlineView.h"
 
 @interface RDVTabBar ()
 
 @property (nonatomic) CGFloat itemWidth;
 @property (nonatomic) UIView *backgroundView;
+@property (nonatomic) BNHairlineView *lineView;
 
 @end
 
@@ -55,7 +57,11 @@
 
 - (void)commonInitialization {
     _backgroundView = [[UIView alloc] init];
+    _lineView = [[BNHairlineView alloc] init];
+    
     [self addSubview:_backgroundView];
+    
+    [self addSubview:_lineView];
     
     [self setTranslucent:NO];
 }
@@ -69,6 +75,8 @@
     
     [self setItemWidth:roundf((frameSize.width - [self contentEdgeInsets].left -
                                [self contentEdgeInsets].right) / [[self items] count])];
+    
+    [[self lineView] setFrame:CGRectMake(0, 0, frameSize.width, 1)];
     
     NSInteger index = 0;
     

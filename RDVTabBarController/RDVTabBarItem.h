@@ -128,4 +128,6 @@
  */
 @property (nonatomic) UIFont *badgeTextFont;
 
+@property (nonatomic, copy) NSString *itemId;
+
 @end

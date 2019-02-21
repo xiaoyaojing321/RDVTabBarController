@@ -112,6 +112,11 @@
     }
     
     imageSize = [image size];
+    if (imageSize.height > 30) {
+        imageSize = CGSizeMake(22, 22);
+    }
+    
+    imageSize = CGSizeMake(27, 27);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);

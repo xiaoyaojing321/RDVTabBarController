@@ -24,6 +24,7 @@
 #import "RDVTabBarController.h"
 #import "RDVTabBarItem.h"
 #import <objc/runtime.h>
+//#import "VBQuickPlayViewManager.h"
 
 @interface UIViewController (RDVTabBarControllerItemInternal)
 
@@ -54,7 +55,24 @@
     [super viewWillAppear:animated];
     
     [self setSelectedIndex:[self selectedIndex]];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"showPlayBar" object:nil userInfo:nil];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showPlayBarSuspend" object:nil userInfo:nil];
+    //[[VBQuickPlayViewManager sharedManager] showPlayBar];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"hidePlayBar" object:nil userInfo:nil];
+    //[[VBQuickPlayViewManager sharedManager] hidePlayBar];
+}
+
+
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
